@@ -1,5 +1,14 @@
 body {
+  background-color: #ddd !important;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.botao{
+	margin: 5px;
+	float: right;
+}
+.elemento{
+	margin: 5px 0;
 }
