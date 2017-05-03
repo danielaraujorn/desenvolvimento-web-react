@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 class Avatar extends React.Component {
   render() {
-    var usuario = this.props.usuario;
+    let usuario = this.props.usuario
     return (
-        <div>
-            <img className="img-circle" src={usuario.foto} width={60} alt="avatar"/>
-            <div>{usuario.nome + ' ' + usuario.sobrenome}</div>
-        </div>
-    );
+      <div>
+        <img className="img-circle" src={usuario.foto} width={60} alt="avatar" />
+        <div>{usuario.nome + ' ' + usuario.sobrenome}</div>
+      </div>
+    )
   }
 }
 
-export default Avatar;
+export default Avatar
