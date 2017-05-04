@@ -2,7 +2,7 @@ import React from 'react'
 import Tweet from './tweet'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import {hashHistory} from 'react-router'
+import {browserHistory} from 'react-router'
 
 const tweets = [{
 	usuario: {
@@ -43,9 +43,8 @@ const tweets = [{
 }]
 
 class Feed extends React.Component {
-	tweetar=()=>{
-		hashHistory.push('/novo')
-	}
+	tweetar = () => browserHistory.push('/novo')
+
   render() {
     let listaTweets = tweets.map((item, id) => {
       return <Tweet key={id} tweet={item} />
@@ -54,10 +53,10 @@ class Feed extends React.Component {
     return (
       <div className="container">
         <div className="row">
-        {listaTweets}
-	      <FloatingActionButton className="botaoadd" onTouchTap={this.tweetar}>
-		      <ContentAdd />
-		    </FloatingActionButton>
+	        {listaTweets}
+		      <FloatingActionButton className="botaoFlutuante" onTouchTap={this.tweetar}>
+			      <ContentAdd />
+			    </FloatingActionButton>
         </div>
       </div>
     )

@@ -6,13 +6,13 @@ injectTapEventPlugin()
 import Form from './componentes/form'
 import Feed from './componentes/feed'
 
-import {Route, Router, IndexRoute, Redirect, hashHistory} from 'react-router'
+import {Route, Router, IndexRoute, Redirect, browserHistory} from 'react-router'
 
 class App extends React.Component {
 	render() {
 		return (
 			<MuiThemeProvider>
-				<Router history={hashHistory}>
+				<Router history={browserHistory}>
 					<Route path="/">
 						<IndexRoute component={Feed} />
 						<Route path="novo" component={Form} />
