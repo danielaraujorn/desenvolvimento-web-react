@@ -6,7 +6,7 @@ body {
 }
 
 .botao{
-	margin: 5px;
+	margin: 5px !important;
 	float: right;
 }
 .elemento{
