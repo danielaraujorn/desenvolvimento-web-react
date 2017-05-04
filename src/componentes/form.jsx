@@ -24,18 +24,24 @@ class Form extends React.Component {
   handleCancelar = () => this.setState({texto: ''})
 
   render() {
+    let styleForm = {
+      marginTop: 100
+    }
+
     return (
-			<Paper className="elemento col-xs-12 col-md-8 col-md-offset-2" zDepth={1}>
-				<TextField
-					value={this.state.texto}
-					onChange={this.handleChangeTexto}
-			    floatingLabelText={(!this.state.texto)? "Bora escrever!" : this.state.texto.length.toString() + " caracteres"}
-			    fullWidth={true}
-			    multiLine={true}
-        />
-		    <RaisedButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Cancelar" />
-	      <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" />
-			</Paper>
+      <div style={styleForm}>
+  			<Paper className="elemento col-xs-12 col-md-8 col-md-offset-2" zDepth={1}>
+  				<TextField
+  					value={this.state.texto}
+  					onChange={this.handleChangeTexto}
+  			    floatingLabelText={(!this.state.texto)? "Bora escrever!" : this.state.texto.length.toString() + " caracteres"}
+  			    fullWidth={true}
+  			    multiLine={true}
+          />
+  		    <RaisedButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Cancelar" />
+  	      <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" />
+  			</Paper>
+      </div>
     )
   }
 }
