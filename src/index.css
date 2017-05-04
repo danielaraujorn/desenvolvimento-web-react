@@ -1,7 +1,7 @@
 body {
   background-color: #ddd !important;
   margin: 0;
-  padding: 0;
+  padding: 0 0 70px 0;
   font-family: sans-serif;
 }
 
@@ -11,4 +11,11 @@ body {
 }
 .elemento{
 	margin: 5px 0;
+}
+
+.botaoadd{
+	position: fixed;
+	z-index: 1;
+	right: 10px;
+	bottom: 10px;
 }
