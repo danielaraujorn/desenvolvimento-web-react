@@ -8,14 +8,17 @@ class Tweet extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      likes: this.props.tweet.likes,
-      jaDeuLike: false
+      likes: props.tweet.likes,
+      jaDeuLike: false,
     }
   }
 
-  like=()=>{
+  like = () => {
     if(!this.state.jaDeuLike) {
-      this.setState({ likes: this.state.likes + 1, jaDeuLike: true })
+      this.setState({
+        likes: this.state.likes + 1,
+        jaDeuLike: true,
+      })
     }
   }
 
@@ -32,11 +35,11 @@ class Tweet extends React.Component {
         <CardText>
           {tweet.texto}
         </CardText>
-        <CardActions style={{float:"right"}}>
+        <CardActions style={{float: 'right'}}>
           <FlatButton
             onTouchTap={this.like}
             target="_blank"
-            label={this.state.likes + " likes"}
+            label={this.state.likes + ' likes'}
             secondary={true}
             icon={(!this.state.jaDeuLike) ? <IconNotLiked/> : <IconLiked/>}
           />

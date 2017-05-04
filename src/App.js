@@ -51,16 +51,14 @@ class App extends React.Component {
 		})
 
 		return (
-			<div>
-				<MuiThemeProvider>
-					<div class="container">
-						<div class="row">
-							<Form />
-							{listaTweets}
-						</div>
+			<MuiThemeProvider>
+				<div className="container">
+					<div className="row">
+						<Form />
+						{listaTweets}
 					</div>
-				</MuiThemeProvider>
-			</div>
+				</div>
+			</MuiThemeProvider>
 		)
 	}
 }
