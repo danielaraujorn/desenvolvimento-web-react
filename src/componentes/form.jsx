@@ -2,6 +2,7 @@ import React from 'react'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import {hashHistory} from 'react-router'
 
 class Form extends React.Component {
   constructor(props) {
@@ -12,16 +13,21 @@ class Form extends React.Component {
   }
 
   handleChangeTexto = (event, value) => {
-  	if(value.length <= 140) {
+    if(value.length <= 140) {
   		this.setState({
         texto: value
       })
   	}
   }
 
-  handleEnviar = () => alert(this.state.texto)
+  handleEnviar = () => {
+    alert(this.state.texto)
+    hashHistory.push('/')
+  }
 
   handleCancelar = () => this.setState({texto: ''})
+
+  handleVoltar = () => hashHistory.push('/')
 
   render() {
     return (
@@ -33,6 +39,7 @@ class Form extends React.Component {
 			    fullWidth={true}
 			    multiLine={true}
         />
+        <RaisedButton onTouchTap={this.handleVoltar} className="botao" primary={true} label="Voltar" />
 		    <RaisedButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Cancelar" />
 	      <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" />
 			</Paper>
