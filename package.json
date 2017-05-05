@@ -1,6 +1,6 @@
 {
   "name": "material",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.9.5"
@@ -10,7 +10,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^3.0.5",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "socket.io-client": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",

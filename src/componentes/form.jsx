@@ -7,6 +7,12 @@ import {browserHistory} from 'react-router'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentUndo from 'material-ui/svg-icons/content/undo'
 
+const usuario = {
+  nome      : 'João',
+  sobrenome : 'Silva',
+  foto      : 'http://icons.iconarchive.com/icons/hopstarter/superhero-avatar/256/Avengers-Iron-Man-icon.png',
+}
+
 class Form extends React.Component {
   constructor(props) {
     super(props)
@@ -17,15 +23,20 @@ class Form extends React.Component {
 
   handleChangeTexto = (event, value) => {
     if(value.length <= 140) {
-  		this.setState({
+      this.setState({
         texto: value
       })
-  	}
+    }
   }
 
   handleEnviar = () => {
-    alert(this.state.texto)
-    browserHistory.push('/')
+    if(this.state.texto){
+      this.props.socket.emit('novoTweet', {
+        usuario: usuario,
+        texto: this.state.texto
+      })
+      browserHistory.push('/')
+    }
   }
 
   handleCancelar = () => this.setState({texto: ''})
@@ -39,17 +50,17 @@ class Form extends React.Component {
 
     return (
       <div style={styleForm}>
-  			<Paper className="elemento col-xs-12 col-md-8 col-md-offset-2" zDepth={1}>
-  				<TextField
-  					value={this.state.texto}
-  					onChange={this.handleChangeTexto}
-  			    floatingLabelText={(!this.state.texto)? "Bora escrever!" : this.state.texto.length.toString() + " caracteres"}
-  			    fullWidth={true}
-  			    multiLine={true}
+        <Paper className="elemento col-xs-12 col-md-8 col-md-offset-2" zDepth={1}>
+          <TextField
+            value={this.state.texto}
+            onChange={this.handleChangeTexto}
+            floatingLabelText={(!this.state.texto)? "Bora escrever!" : this.state.texto.length.toString() + " caracteres"}
+            fullWidth={true}
+            multiLine={true}
           />
-  		    <FlatButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Cancelar" />
-  	      <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" />
-  			</Paper>
+          <FlatButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Cancelar" />
+          <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" />
+        </Paper>
         <FloatingActionButton className="botaoFlutuante" onTouchTap={this.handleVoltar}>
           <ContentUndo />
         </FloatingActionButton>
