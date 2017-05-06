@@ -30,10 +30,10 @@ class Form extends React.Component {
   }
 
   handleEnviar = () => {
-    if(this.state.texto){
+    if(this.state.texto) {
       this.props.socket.emit('novoTweet', {
         usuario: usuario,
-        texto: this.state.texto
+        texto: this.state.texto,
       })
       browserHistory.push('/')
     }

@@ -2,7 +2,7 @@ import React from 'react'
 
 class AppManager extends React.Component {
   constructor(props) {
-  super(props)
+    super(props)
     this.state = {
       tweets: [],
     }
@@ -14,14 +14,17 @@ class AppManager extends React.Component {
   }
 
   tweetsRecebidos = (dados) => {
-    this.setState({tweets: dados})
+    this.setState({
+      tweets: dados,
+    })
   }
 
   render() {
-    const childrenWithProps = React.Children.map(this.props.children,
-     (child) => React.cloneElement(child, {
-       ...this.props.route,...this.state
-     })
+    const childrenWithProps = React.Children.map(
+      this.props.children,
+      (child) => React.cloneElement(child, {
+        ...this.props.route, ...this.state
+      })
     )
     return (
       <div>

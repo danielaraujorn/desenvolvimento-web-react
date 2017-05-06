@@ -11,27 +11,29 @@ class Tweet extends React.Component {
       jaDeuLike: false,
     }
   }
-  formatarData=(tdate)=>{
-    var system_date = new Date(Date.parse(tdate));
-    var user_date = new Date();
-    var diff = Math.floor((user_date - system_date) / 1000);
-    if (diff <= 1) {return "agorinha";}
-    if (diff < 20) {return diff + " segundos atrás";}
-    if (diff < 40) {return "há meio minuto";}
-    if (diff < 60) {return "há menos de um minuto";}
-    if (diff <= 90) {return "há um minuto";}
-    if (diff <= 3540) {return "há "+ Math.round(diff / 60) + " minutos";}
-    if (diff <= 5400) {return "há 1 hora";}
-    if (diff <= 86400) {return "há "+ Math.round(diff / 3600) + " horas";}
-    if (diff <= 129600) {return "há 1 dia";}
-    if (diff < 604800) {return "há "+ Math.round(diff / 86400) + " dias";}
-    if (diff <= 777600) {return "há 1 semana";}
-    else return "em 1900 e vovó era novinha";
-}
+
+  formatarData = (tdate) => {
+    let system_date = new Date(Date.parse(tdate))
+    let user_date = new Date()
+    let diff = Math.floor((user_date - system_date) / 1000)
+    if (diff <= 1) return 'agorinha'
+    if (diff < 20) return `há ${diff} segundos atrás`
+    if (diff < 40) return 'há meio minuto'
+    if (diff < 60) return 'há menos de um minuto'
+    if (diff <= 90) return 'há um minuto'
+    if (diff <= 3540) return `há ${Math.round(diff / 60)} minutos`
+    if (diff <= 5400) return 'há 1 hora'
+    if (diff <= 86400) return `há ${Math.round(diff / 3600)} horas`
+    if (diff <= 129600) return 'há 1 dia'
+    if (diff < 604800) return `há ${Math.round(diff / 86400)} dias`
+    if (diff <= 777600) return 'há 1 semana'
+    else return 'em 1900 e vovó era novinha'
+  }
+
   like = () => {
     if(!this.state.jaDeuLike) {
       this.props.socket.emit('curtirTweet', {
-        id: this.props.tweet.id
+        id: this.props.tweet.id,
       })
       this.setState({
         jaDeuLike: true,
@@ -41,6 +43,10 @@ class Tweet extends React.Component {
 
   render() {
     let tweet = this.props.tweet
+    let styleCardText = {
+      wordWrap: 'break-word'
+    }
+
     return (
       <Card className="elemento col-xs-12 col-md-8 col-md-offset-2">
         <CardHeader
@@ -48,7 +54,7 @@ class Tweet extends React.Component {
           subtitle={this.formatarData(tweet.data_publicacao)}
           avatar={tweet.usuario.foto}
         />
-        <CardText>
+        <CardText style={styleCardText}>
           {tweet.texto}
         </CardText>
         <CardActions style={{float: 'right'}}>
