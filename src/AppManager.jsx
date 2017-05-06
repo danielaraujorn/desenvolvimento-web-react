@@ -26,9 +26,12 @@ class AppManager extends React.Component {
         ...this.props.route, ...this.state
       })
     )
+
     return (
-      <div>
-        {childrenWithProps}
+      <div className="container">
+        <div className="row">
+          {childrenWithProps}
+        </div>
       </div>
     )
   }

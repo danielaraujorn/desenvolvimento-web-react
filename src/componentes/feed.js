@@ -22,13 +22,11 @@ class Feed extends React.Component {
     }
 
     return (
-      <div className="container">
-        <div className="row">
-          {listaTweets}
-          <FloatingActionButton className="botaoFlutuante" onTouchTap={this.tweetar}>
-            <ContentAdd />
-          </FloatingActionButton>
-        </div>
+      <div>
+        {listaTweets}
+        <FloatingActionButton className="botaoFlutuante" onTouchTap={this.tweetar}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     )
   }

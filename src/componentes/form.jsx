@@ -54,7 +54,7 @@ class Form extends React.Component {
           <TextField
             value={this.state.texto}
             onChange={this.handleChangeTexto}
-            floatingLabelText={(!this.state.texto)? "Bora escrever!" : this.state.texto.length.toString() + " caracteres"}
+            floatingLabelText={(!this.state.texto)? 'Bora escrever!' : this.state.texto.length.toString() + ' caracteres'}
             fullWidth={true}
             multiLine={true}
           />

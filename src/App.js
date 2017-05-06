@@ -10,7 +10,7 @@ import Form from './componentes/form'
 import Feed from './componentes/feed'
 
 import io from 'socket.io-client'
-const socket = io('https://domotica-node.herokuapp.com')
+const socket = io('http://localhost:3001')
 
 class App extends React.Component {
   render() {
