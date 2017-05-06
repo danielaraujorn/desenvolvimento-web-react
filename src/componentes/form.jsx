@@ -10,7 +10,7 @@ import ContentUndo from 'material-ui/svg-icons/content/undo'
 const usuario = {
   nome      : 'João',
   sobrenome : 'Silva',
-  foto      : 'http://icons.iconarchive.com/icons/hopstarter/superhero-avatar/256/Avengers-Iron-Man-icon.png',
+  foto      : 'https://cdn4.iconfinder.com/data/icons/STROKE/communications/png/400/avatar.png',
 }
 
 class Form extends React.Component {
