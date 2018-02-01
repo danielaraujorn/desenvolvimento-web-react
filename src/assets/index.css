@@ -1,14 +1,13 @@
 body {
   background-color: #ddd !important;
   margin: 0;
-  padding: 0 0 70px 0;
   font-family: sans-serif;
   min-width: 320px;
 }
 
 .botao {
 	margin: 5px !important;
-	float: right;
+  float: right;
 }
 
 .elemento {

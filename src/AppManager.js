@@ -13,10 +13,8 @@ class AppManager extends React.Component {
     this.props.route.socket.on('todosTweets', this.tweetsRecebidos)
   }
 
-  tweetsRecebidos = (dados) => {
-    this.setState({
-      tweets: dados,
-    })
+  tweetsRecebidos = (tweets) => {
+    this.setState({ tweets })
   }
 
   render() {

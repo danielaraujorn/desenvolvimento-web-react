@@ -2,7 +2,7 @@ import React from 'react'
 import FlatButton from 'material-ui/FlatButton'
 import IconLiked from 'material-ui/svg-icons/action/favorite'
 import IconNotLiked from 'material-ui/svg-icons/action/favorite-border'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 
 class Tweet extends React.Component {
   constructor(props) {
@@ -33,11 +33,12 @@ class Tweet extends React.Component {
   like = () => {
     if(!this.state.jaDeuLike) {
       this.props.socket.emit('curtirTweet', {
-        id: this.props.tweet.id,
+        id: this.props.tweet._id,
       })
       this.setState({
         jaDeuLike: true,
       })
+      // this.props.socket.emit('pedirTweets') // talvez
     }
   }
 
