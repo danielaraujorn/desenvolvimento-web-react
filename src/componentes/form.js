@@ -3,10 +3,9 @@ import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
-import { browserHistory } from 'react-router'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentUndo from 'material-ui/svg-icons/content/undo'
-
+import { browserHistory } from 'react-router'
 import { usuario } from '../../config'
 
 class Form extends React.Component {
@@ -31,7 +30,6 @@ class Form extends React.Component {
         usuario,
         texto: this.state.texto,
       })
-      // this.props.socket.emit('pedirTweets') // talvez
       browserHistory.push('/')
     }
   }

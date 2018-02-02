@@ -1,16 +1,11 @@
 import React from 'react'
-
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-
 import { browserHistory } from 'react-router'
-
 import Tweet from './tweet'
 
 class Feed extends React.Component {
-  tweetar = () => {
-    browserHistory.push('/novo')
-  }
+  tweetar = () => browserHistory.push('/novo')
 
   render() {
   	let listaTweets = this.props.tweets.map((item, ind) => (
