@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentUndo from 'material-ui/svg-icons/content/undo'
 import { browserHistory } from 'react-router'
-import { usuario } from '../../config'
 
 class Form extends React.Component {
   constructor(props) {
@@ -16,18 +15,12 @@ class Form extends React.Component {
     }
   }
 
-  handleChangeTexto = (event, value) => {
-    if(value.length <= 140) {
-      this.setState({
-        texto: value
-      })
-    }
-  }
+  handleChangeTexto = (_, texto) => texto.length <= 140 && this.setState({ texto })
 
   handleEnviar = () => {
     if(this.state.texto) {
-      this.props.socket.emit('novoTweet', {
-        usuario,
+      this.props.socket.emit('addTweet', {
+        codAuthor: this.props.session,
         texto: this.state.texto,
       })
       browserHistory.push('/')
@@ -55,7 +48,13 @@ class Form extends React.Component {
             fullWidth={true}
             multiLine={true}
           />
-          <RaisedButton onTouchTap={this.handleEnviar} className="botao" primary={true} label="Enviar" disabled={!this.state.texto} />
+          <RaisedButton
+            onTouchTap={this.handleEnviar}
+            className="botao"
+            primary={true}
+            label="Enviar"
+            disabled={!(this.props.session && this.state.texto)}
+          />
           <FlatButton onTouchTap={this.handleCancelar} className="botao" primary={true} label="Limpar" />
         </Paper>
         <FloatingActionButton className="botaoFlutuante" onTouchTap={this.handleVoltar}>

@@ -17,10 +17,10 @@ class Tweet extends React.Component {
     }
   }
 
-  formatarData = (tdate) => {
-    let system_date = new Date(Date.parse(tdate))
-    let user_date = new Date()
-    let diff = Math.floor((user_date - system_date) / 1000)
+  formatarData = tdate => {
+    const system_date = new Date(Date.parse(tdate))
+    const user_date = new Date()
+    const diff = Math.floor((user_date - system_date) / 1000)
     if (diff <= 1) return 'agorinha'
     if (diff < 20) return `há ${diff} segundos atrás`
     if (diff < 40) return 'há meio minuto'
@@ -32,23 +32,20 @@ class Tweet extends React.Component {
     if (diff <= 129600) return 'há 1 dia'
     if (diff < 604800) return `há ${Math.round(diff / 86400)} dias`
     if (diff <= 777600) return 'há 1 semana'
-    else return 'em 1900 e vovó era novinha'
+    return 'em 1900 e vovó era novinha'
   }
 
   like = () => {
     if(!this.state.jaDeuLike) {
-      this.props.socket.emit('curtirTweet', {
-        id: this.props.tweet._id,
-      })
-      this.setState({
-        jaDeuLike: true,
-      })
+      const { codTweet, likes } = this.props.tweet
+      this.props.socket.emit('likeTweet', { codTweet })
+      this.setState({ jaDeuLike: true, likes: likes + 1 })
     }
   }
 
   render() {
-    let tweet = this.props.tweet
-    let styleCardText = {
+    const { tweet } = this.props
+    const styleCardText = {
       wordWrap: 'break-word'
     }
 

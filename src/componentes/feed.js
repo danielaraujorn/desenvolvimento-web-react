@@ -8,7 +8,7 @@ class Feed extends React.Component {
   tweetar = () => browserHistory.push('/novo')
 
   render() {
-  	let listaTweets = this.props.tweets.map((item, ind) => (
+    const listaTweets = this.props.tweets.map((item, ind) => (
       <Tweet key={ind} tweet={item} socket={this.props.socket} />
     ))
     return (
