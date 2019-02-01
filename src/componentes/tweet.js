@@ -52,9 +52,9 @@ class Tweet extends React.Component {
     return (
       <Card className="elemento col-xs-12 col-md-8 col-md-offset-2">
         <CardHeader
-          title={`${tweet.usuario.nome} ${tweet.usuario.sobrenome}`}
+          title={`${tweet.author.nome} ${tweet.author.sobrenome}`}
           subtitle={this.formatarData(tweet.data_publicacao)}
-          avatar={tweet.usuario.foto}
+          avatar={tweet.author.foto}
         />
         <CardText style={styleCardText}>
           {tweet.texto}

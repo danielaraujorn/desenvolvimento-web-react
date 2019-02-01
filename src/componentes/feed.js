@@ -7,13 +7,14 @@ import Tweet from './tweet'
 class Feed extends React.Component {
   tweetar = () => browserHistory.push('/novo')
 
+  getTweets = () => this.props.tweets.map((item, ind) => (
+    <Tweet key={ind} tweet={item} client={this.props.client} />
+  ))
+
   render() {
-    const listaTweets = this.props.tweets.map((item, ind) => (
-      <Tweet key={ind} tweet={item} socket={this.props.socket} />
-    ))
     return (
       <div>
-        {listaTweets}
+        {this.getTweets()}
         <FloatingActionButton className="botaoFlutuante" onTouchTap={this.tweetar}>
           <ContentAdd />
         </FloatingActionButton>

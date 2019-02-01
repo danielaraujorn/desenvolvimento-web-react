@@ -1,8 +1,6 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
-
 import {
   Route,
   Router,
@@ -10,21 +8,21 @@ import {
   Redirect,
   browserHistory
 } from 'react-router'
-
+import ApolloClient from 'apollo-boost'
 import AppManager from './AppManager'
 import Form from './componentes/form'
 import Feed from './componentes/feed'
+import { graphql } from '../config'
 
-import io from 'socket.io-client'
-import { hostname } from '../config'
-const socket = io(hostname)
+const client = new ApolloClient(graphql)
+injectTapEventPlugin()
 
 class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
         <Router history={browserHistory}>
-          <Route path="/" component={AppManager} socket={socket}>
+          <Route path="/" component={AppManager} client={client}>
             <IndexRoute component={Feed} />
             <Route path="novo" component={Form} />
           </Route>

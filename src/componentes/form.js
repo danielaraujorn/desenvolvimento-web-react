@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentUndo from 'material-ui/svg-icons/content/undo'
 import { browserHistory } from 'react-router'
+import { addTweetMutation, getTweetsQuery } from '../query'
 
 class Form extends React.Component {
   constructor(props) {
@@ -19,11 +20,20 @@ class Form extends React.Component {
 
   handleEnviar = () => {
     if(this.state.texto) {
-      this.props.socket.emit('addTweet', {
-        codAuthor: this.props.session,
-        texto: this.state.texto,
+      this.props.client.mutate({
+        mutation: addTweetMutation,
+        variables: {
+          codAuthor: this.props.session,
+          texto: this.state.texto,
+        }
       })
-      browserHistory.push('/')
+      .then(() => this.props.client.query({ query: getTweetsQuery }))
+      .then(result => {
+        console.log(result, 'sdqasadas');
+        
+        this.props.tweetsRecebidos(result.data.tweets)
+        browserHistory.push('/')
+      })
     }
   }
 

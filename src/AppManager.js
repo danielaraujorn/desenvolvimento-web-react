@@ -1,5 +1,6 @@
 import React from 'react'
 import { usuario } from '../config'
+import { getTweetsQuery, addAuthorMutation } from './query'
 
 class AppManager extends React.Component {
   constructor(props) {
@@ -11,21 +12,27 @@ class AppManager extends React.Component {
   }
 
   componentWillMount() {
-    this.props.route.socket.emit('getTweets')
-    this.props.route.socket.on('tweets', this.tweetsRecebidos)
-    this.props.route.socket.emit('addAuthor', usuario)
-    this.props.route.socket.on('author', this.autorRecebido)
+    this.props.route.client.mutate({
+      mutation: addAuthorMutation,
+      variables: usuario
+    }).then(result => this.setSession(result.data.addAuthor.codAuthor))
+    
+    this.props.route.client.query({ query: getTweetsQuery })
+      .then(result => this.tweetsRecebidos(result.data.tweets))
   }
 
-  autorRecebido = codAuthor => this.setState({ session: codAuthor })
+  setSession = session => this.setState({ session })
 
   tweetsRecebidos = tweets => this.setState({ tweets })
 
   render() {
+    console.log('tweetsRecebidos', tweetsRecebidos);
+    
+    const { tweetsRecebidos } = this
     const childrenWithProps = React.Children.map(
       this.props.children,
       (child) => React.cloneElement(child, {
-        ...this.props.route, ...this.state
+        ...this.props.route, ...this.state, tweetsRecebidos,
       })
     )
 
